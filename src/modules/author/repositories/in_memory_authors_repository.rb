@@ -1,6 +1,6 @@
 class InMemoryAuthorsRepository
-  def initialize
-    @authors = []
+  def initialize(initial_authors = [])
+    @authors = initial_authors
   end
 
   def fetch_all

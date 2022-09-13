@@ -1,5 +1,5 @@
 require_relative './views/main_screen'
-require_relative './modules/author/repositories/in_memory_author_repository'
+require_relative './modules/author/repositories/disk_authors_repository'
 require_relative './modules/author/services/create-author/create_author_presenter'
 require_relative './modules/author/services/list-authors/list_authors_presenter'
 
@@ -7,7 +7,7 @@ def main
   loop_lock = true
 
   # Initialize the Repositories:
-  authors_repository = InMemoryAuthorsRepository.new
+  authors_repository = DiskAuthorsRepository.new
 
   # Initialize the Author Presenters:
   create_author_presenter = CreateAuthorPresenter.new(authors_repository)
@@ -35,3 +35,4 @@ def main
 end
 
 main
+
