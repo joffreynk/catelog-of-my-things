@@ -1,8 +1,12 @@
 require_relative './components/menu_component'
+require_relative './managers/author_manager'
 
 class MainScreen
   def initialize(handlers)
-    @handlers = handlers
+    author_manager = AuthorManager.new(
+      create_author: handlers[:author][:create],
+      list_authors: handlers[:author][:list]
+    )
 
     @main_options = [
       {
@@ -27,7 +31,7 @@ class MainScreen
       },
       {
         title: 'List all authors.',
-        handler: -> { puts 'Option selected' }
+        handler: -> { author_manager.handle_list_authors }
       },
       {
         title: 'Add a book.',
@@ -43,7 +47,7 @@ class MainScreen
       },
       {
         title: 'Add an author.',
-        handler: -> { puts 'Option selected' }
+        handler: -> { author_manager.handle_create_author }
       },
       {
         title: 'Add a label.',
@@ -55,7 +59,7 @@ class MainScreen
       },
       {
         title: 'Exit.',
-        handler: lambda { puts 'Exit'; @handlers[:app][:exit].call }
+        handler: lambda { puts 'Exit'; handlers[:app][:exit].call }
       }
     ]
   end

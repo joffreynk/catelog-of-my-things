@@ -7,15 +7,15 @@ class Item
   @@num_instances = 0
 
   def initialize(genre:, author:, label:, archived: false, publish_date: DateTime.now)
-    @@num_instances += 1
-    @id = @@num_instances
+    @archived = archived
+    @publish_date = publish_date
 
     self.genre = genre
     self.author = author
     self.label = label
 
-    @archived = archived
-    @publish_date = publish_date
+    @@num_instances += 1
+    @id = @@num_instances
   end
 
   def genre=(genre)
