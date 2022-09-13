@@ -6,7 +6,7 @@ class Item
 
   @@num_instances = 0
 
-  def initialize(genre:, author:, label:, archived: false)
+  def initialize(genre:, author:, label:, archived: false, publish_date: DateTime.now)
     @@num_instances += 1
     @id = @@num_instances
 
@@ -15,7 +15,7 @@ class Item
     self.label = label
 
     @archived = archived
-    @publish_date = DateTime.now
+    @publish_date = publish_date
   end
 
   def genre=(genre)
@@ -31,6 +31,17 @@ class Item
   def label=(label)
     @label = label
     @label.add_item(self)
+  end
+
+  def move_to_archive
+    @archived = can_be_archived?
+  end
+
+  private
+
+  def can_be_archived?
+    now = Date.now.year
+    now - @publish_date.year > 10
   end
 end
 
