@@ -23,5 +23,10 @@
     "id": 6,
     "title": "cs",
     "color": "blue"
+  },
+  {
+    "id": 78,
+    "title": "somelabel",
+    "color": "somecolor"
   }
 ]

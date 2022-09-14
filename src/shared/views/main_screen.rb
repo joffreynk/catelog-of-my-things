@@ -1,5 +1,6 @@
 require_relative './components/menu_component'
 require_relative '../../modules/author/views/screen-managers/author_screen_manager'
+require_relative '../../modules/label/views/screen-managers/label_screen_manager'
 
 class MainScreen
   def initialize(handlers)
@@ -9,7 +10,7 @@ class MainScreen
       create_author: handlers[:author][:create],
       list_authors: handlers[:author][:list]
     )
-    label_manager = LabelManager.new(
+    label_screen_manager = LabelScreenManager.new(
     create_label: handlers[:label][:create],
     list_labels: handlers[:label][:list]
     )
@@ -33,7 +34,7 @@ class MainScreen
       },
       {
         title: 'List all labels.',
-        handler: -> { label_manager.handle_list_labels }
+        handler: -> { label_screen_manager.handle_list_labels }
       },
       {
         title: 'List all authors.',
@@ -57,7 +58,7 @@ class MainScreen
       },
       {
         title: 'Add a label.',
-        handler: -> { label_manager.handle_create_label }
+        handler: -> { label_screen_manager.handle_create_label }
       },
       {
         title: 'Add a genre.',

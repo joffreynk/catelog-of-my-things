@@ -3,21 +3,25 @@ require_relative './modules/author/repositories/disk_authors_repository'
 require_relative './modules/author/services/create-author/create_author_service'
 require_relative './modules/author/services/list-authors/list_authors_service'
 
-require_relative './modules/label/repositories/disk_labels_repositories'
-require_relative './modules/label/services/create-label/create_label_presenter'
-require_relative './modules/label/services/list-labels/list_labels_presenter'
+require_relative './modules/label/repositories/disk_labels_repository'
+require_relative './modules/label/services/create-label/create_label_service'
+require_relative './modules/label/services/list-labels/list_labels_service'
+
 def main
   loop_lock = true
-  labels_repository = DiskLabelsRepository.new
-  create_label_presenter = CreateLabelPresenter.new(labels_repository)
-  list_labels_presenter = ListLabelsPresenter.new(labels_repository)
+
 
   # Initialize the Repositories:
   authors_repository = DiskAuthorsRepository.new
+  labels_repository = DiskLabelsRepository.new
 
-  # Initialize the Author Services:
+  # Initialize the Author services:
   create_author_service = CreateAuthorService.new(authors_repository)
   list_authors_service = ListAuthorsService.new(authors_repository)
+
+  # Initialize the Label services:
+  create_label_service = CreateLabelService.new(labels_repository)
+  list_labels_service = ListLabelsService.new(labels_repository)
 
   handlers = {
     game: {
@@ -25,8 +29,8 @@ def main
       list: lambda { puts 'Function to list all games.' }
     },
     label: {
-      create: lambda { |req| create_label_presenter.handle(req)},
-      list: lambda { list_labels_presenter.handle }
+      create: lambda { |req| create_label_service.execute(req)},
+      list: lambda { list_labels_service.execute }
     },
     author: {
       create: lambda { |req| create_author_service.execute(req) },
