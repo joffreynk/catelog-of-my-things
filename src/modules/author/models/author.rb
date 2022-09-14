@@ -1,16 +1,14 @@
-class Author
-  attr_reader :id, :items
+require_relative '../../../shared/models/entity'
+
+class Author < Entity
+  attr_reader :items
   attr_accessor :first_name, :last_name
 
-  @@num_instances = 0
-
   def initialize(first_name, last_name, id: nil)
+    super(id)
     @first_name = first_name
     @last_name = last_name
-
     @items = []
-    @@num_instances += 1
-    @id = id || @@num_instances
   end
 
   def to_hash

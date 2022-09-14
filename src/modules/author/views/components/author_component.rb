@@ -1,4 +1,4 @@
-require_relative './component'
+require_relative '../../../../shared/views/components/component'
 
 class AuthorComponent < Component
   def to_string

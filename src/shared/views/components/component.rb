@@ -1,6 +1,6 @@
 class Component
   def initialize(data)
-    raise 'Abstract classes can\'t be instantiated.'  if self.instance_of?(Component)
+    raise 'Abstract classes can\'t be instantiated.' if self.instance_of?(Component)
     @data = data
     @component_str = to_string
   end

@@ -1,9 +1,9 @@
 require_relative './create_author_service'
-require_relative '../../repositories/in_memory_authors_repository'
+require_relative '../../../../shared/repositories/memory_repository'
 
 describe CreateAuthorService do
   before(:each) do
-    @authors_repository = InMemoryAuthorsRepository.new
+    @authors_repository = MemoryRepository.new
     @create_author_service = CreateAuthorService.new(@authors_repository)
   end
 

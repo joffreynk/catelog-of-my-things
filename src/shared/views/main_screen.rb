@@ -1,9 +1,9 @@
 require_relative './components/menu_component'
-require_relative './managers/author_manager'
+require_relative '../../modules/author/views/screen-managers/author_screen_manager'
 
 class MainScreen
   def initialize(handlers)
-    author_manager = AuthorManager.new(
+    author_screen_manager = AuthorScreenManager.new(
       create_author: handlers[:author][:create],
       list_authors: handlers[:author][:list]
     )
@@ -31,7 +31,7 @@ class MainScreen
       },
       {
         title: 'List all authors.',
-        handler: -> { author_manager.handle_list_authors }
+        handler: -> { author_screen_manager.handle_list_authors }
       },
       {
         title: 'Add a book.',
@@ -47,7 +47,7 @@ class MainScreen
       },
       {
         title: 'Add an author.',
-        handler: -> { author_manager.handle_create_author }
+        handler: -> { author_screen_manager.handle_create_author }
       },
       {
         title: 'Add a label.',

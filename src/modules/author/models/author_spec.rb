@@ -17,13 +17,15 @@ describe Author do
       expect { Author.new }.to raise_error(ArgumentError)
     end
 
-    it 'should create an Author object with the correct ID' do
-      author2 = Author.new(FAKE_FIRST_NAME, FAKE_LAST_NAME)
-      author3 = Author.new(FAKE_FIRST_NAME, FAKE_LAST_NAME)
+    it 'should create an Author object with unique ID' do
+      new_authors_to_create = 10
+      new_authors_ids = []
 
-      expect(@author).to have_attributes(id: 3)
-      expect(author2).to have_attributes(id: 4)
-      expect(author3).to have_attributes(id: 5)
+      new_authors_to_create.times do
+        new_authors_ids.push(Author.new(FAKE_FIRST_NAME, FAKE_LAST_NAME).id)
+      end
+
+      expect(new_authors_ids).not_to include(@author.id)
     end
   end
 

@@ -1,21 +1,17 @@
 require 'date'
 
-class Item
-  attr_reader :id, :archived, :genre, :author, :label
+class Item < Entity
+  attr_reader :archived, :genre, :author, :label
   attr_accessor :publish_date
 
-  @@num_instances = 0
-
-  def initialize(genre:, author:, label:, archived: false, publish_date: DateTime.now)
+  def initialize(genre:, author:, label:, archived: false, publish_date: DateTime.now, id: nil)
+    super(id)
     @archived = archived
     @publish_date = publish_date
 
     self.genre = genre
     self.author = author
     self.label = label
-
-    @@num_instances += 1
-    @id = @@num_instances
   end
 
   def genre=(genre)
