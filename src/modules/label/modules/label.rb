@@ -10,6 +10,14 @@ class Label
     @items = []
   end
 
+  def to_hash
+    {
+      id: @id,
+      title: @title,
+      color: @color
+    }
+  end
+
   def att_item(item)
     @items.push(item) unless @items.includes(item)
   end
