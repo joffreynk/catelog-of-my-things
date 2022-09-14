@@ -4,10 +4,18 @@ class Item < Entity
   attr_reader :archived, :genre, :author, :label
   attr_accessor :publish_date
 
-  def initialize(genre:, author:, label:, archived: false, publish_date: DateTime.now, id: nil)
+  def initialize(
+    genre:,
+    author:,
+    label:,
+    archived:,
+    publish_date:,
+    id:
+  )
+    raise 'Abstract classes can\'t be instantiated.' if self.instance_of?(Item)
     super(id)
     @archived = archived
-    @publish_date = publish_date
+    @publish_date = Date.parse(publish_date)
 
     self.genre = genre
     self.author = author
@@ -36,8 +44,8 @@ class Item < Entity
   private
 
   def can_be_archived?
-    now = Date.now.year
-    now - @publish_date.year > 10
+    curr_year = Date.now.year
+    curr_year - @publish_date.year > 10
   end
 end
 
