@@ -1,6 +1,7 @@
 require_relative './components/menu_component'
 require_relative '../../modules/author/views/screen-managers/author_screen_manager'
 require_relative '../../modules/label/views/screen-managers/label_screen_manager'
+require_relative '../../modules/genre/views/screen-managers/genre_screen_manager'
 
 class MainScreen
   def initialize(handlers)
@@ -11,8 +12,12 @@ class MainScreen
       list_authors: handlers[:author][:list]
     )
     label_screen_manager = LabelScreenManager.new(
-    create_label: handlers[:label][:create],
-    list_labels: handlers[:label][:list]
+      create_label: handlers[:label][:create],
+      list_labels: handlers[:label][:list]
+    )
+    genre_screen_manager = GenreScreenManager.new(
+      create_genre: handlers[:genre][:create],
+      list_genres: handlers[:genre][:list]
     )
 
     @main_options = [
@@ -30,7 +35,7 @@ class MainScreen
       },
       {
         title: 'List all genres.',
-        handler: -> { puts 'Option selected' }
+        handler: -> { genre_screen_manager.handle_list_genres }
       },
       {
         title: 'List all labels.',
@@ -62,7 +67,7 @@ class MainScreen
       },
       {
         title: 'Add a genre.',
-        handler: -> { puts 'Option selected' }
+        handler: -> { genre_screen_manager.handle_create_genre }
       },
       {
         title: 'Exit.',
