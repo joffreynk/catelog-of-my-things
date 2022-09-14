@@ -1,6 +1,6 @@
 require 'json'
 
-require_relative './in_memory_labels_repository'
+require_relative './in_memory_labels_repositories'
 require_relative '../../../utils/file.utils'
 
 class DiskLabelsRepository
@@ -43,7 +43,7 @@ class DiskLabelsRepository
     labels_hash = JSON.parse(labels_json_data)
     labels_hash.map do |label_hash|
       id, title, color = label_hash.values_at('id', 'title', 'color')
-      label.new(title, color, id: id)
+      Label.new(title:title, color:color, id: id)
     end
   end
 

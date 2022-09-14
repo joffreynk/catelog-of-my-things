@@ -2,9 +2,9 @@ class Label
   @@increment = 1
   attr_accessor :title, :color
   attr_reader :items, :id
-  def initialize(title:, color)
+  def initialize(title:, color:, id:nil)
     @@increment += 1
-    @id = @@increment
+    @id = id || @@increment
     @title = title
     @color  = color
     @items = []

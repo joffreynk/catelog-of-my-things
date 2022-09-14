@@ -1,6 +1,6 @@
-require_relative './create_labels_service.rb'
+require_relative './create_label_service.rb'
 
-class CreateAuthorPresenter
+class CreateLabelPresenter
   def initialize(labels_repository)
     @labels_repository = labels_repository
   end
