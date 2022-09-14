@@ -6,6 +6,14 @@ class MainScreen
     author_manager = AuthorManager.new(
       create_author: handlers[:author][:create],
       list_authors: handlers[:author][:list]
+require_relative './managers/label_manager'
+
+class MainScreen
+  def initialize(handlers)
+    @handlers = handlers
+    label_manager = LabelManager.new(
+    create_label: handlers[:label][:create],
+    list_labels: handlers[:label][:list]
     )
 
     @main_options = [
@@ -27,7 +35,7 @@ class MainScreen
       },
       {
         title: 'List all labels.',
-        handler: -> { puts 'Option selected' }
+        handler: -> { label_manager.handle_list_labels }
       },
       {
         title: 'List all authors.',
@@ -51,7 +59,7 @@ class MainScreen
       },
       {
         title: 'Add a label.',
-        handler: -> { puts 'Option selected' }
+        handler: -> { label_manager.handle_create_label }
       },
       {
         title: 'Add a genre.',
