@@ -1,13 +1,11 @@
 require_relative '../../models/genre'
 
-class CreateGenreService
+class ListGenresService
   def initialize(genre_repository)
     @genre_repository = genre_repository
   end
 
-  def execute(name)
-    new_genre = Genre.new(name)
-    @genre_repository.save(new_genre)
-    new_genre
+  def execute
+    @genre_repository.fetch_all
   end
 end

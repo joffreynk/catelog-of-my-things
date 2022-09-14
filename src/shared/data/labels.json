@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "Gabriel",
+    "color": "Santo"
+  },
+  {
+    "id": 2,
+    "title": "Jesse",
+    "color": "Microverse"
+  },
+  {
+    "id": 3,
+    "title": "Jach",
+    "color": "Reach"
+  },
+  {
+    "id": 4,
+    "title": "Joe",
+    "color": "Doe"
+  },
+  {
+    "id": 6,
+    "title": "cs",
+    "color": "blue"
+  },
+  {
+    "id": 78,
+    "title": "somelabel",
+    "color": "somecolor"
+  }
+]

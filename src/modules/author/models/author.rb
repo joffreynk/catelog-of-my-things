@@ -1,19 +1,21 @@
 require_relative '../../../shared/models/entity'
 
-class Genre < Entity
+class Author < Entity
   attr_reader :items
-  attr_accessor :name
+  attr_accessor :first_name, :last_name
 
-  def initialize(name, id: nil)
+  def initialize(first_name, last_name, id: nil)
     super(id)
-    @name = name
+    @first_name = first_name
+    @last_name = last_name
     @items = []
   end
 
   def to_hash
     {
       id: @id,
-      name: @name
+      first_name: @first_name,
+      last_name: @last_name
     }
   end
 

@@ -1,10 +1,11 @@
-class Label
-  @@increment = 1
+require_relative '../../../shared/models/entity'
+
+class Label < Entity
   attr_accessor :title, :color
-  attr_reader :items, :id
+  attr_reader :items
+
   def initialize(title:, color:, id:nil)
-    @@increment += 1
-    @id = id || @@increment
+    super(id)
     @title = title
     @color  = color
     @items = []
@@ -18,7 +19,7 @@ class Label
     }
   end
 
-  def att_item(item)
+  def add_item(item)
     @items.push(item) unless @items.includes(item)
   end
 end
