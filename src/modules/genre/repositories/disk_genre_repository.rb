@@ -43,7 +43,7 @@ class DiskGenreRepository
     genre_hash = JSON.parse(genre_json_data)
     genre_hash.map do |genre_hash|
       id, name = genre_hash.values_at('id', 'name', )
-      Author.new(name, id: id)
+      Genre.new(name, id: id)
     end
   end
 
