@@ -2,6 +2,7 @@ require_relative './components/menu_component'
 require_relative '../../modules/author/views/screen-managers/author_screen_manager'
 require_relative '../../modules/label/views/screen-managers/label_screen_manager'
 require_relative '../../modules/genre/views/screen-managers/genre_screen_manager'
+require_relative '../../modules/item/views/screen-managers/game_screen_manager'
 
 class MainScreen
   def initialize(handlers)
@@ -19,6 +20,13 @@ class MainScreen
       create_genre: handlers[:genre][:create],
       list_genres: handlers[:genre][:list]
     )
+    game_screen_manager = GameScreenManager.new(
+      create_game: handlers[:game][:create],
+      list_games: handlers[:game][:list],
+      genres_screen_manager: genre_screen_manager,
+      authors_screen_manager: author_screen_manager,
+      labels_screen_manager: label_screen_manager
+    )
 
     @main_options = [
       {
@@ -31,7 +39,7 @@ class MainScreen
       },
       {
         title: 'List all games.',
-        handler: -> { puts 'Option selected' }
+        handler: -> { game_screen_manager.handle_list_games }
       },
       {
         title: 'List all genres.',
@@ -55,7 +63,7 @@ class MainScreen
       },
       {
         title: 'Add a game.',
-        handler: -> { puts 'Option selected' }
+        handler: -> { game_screen_manager.handle_create_game }
       },
       {
         title: 'Add an author.',

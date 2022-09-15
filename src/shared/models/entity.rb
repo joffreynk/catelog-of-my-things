@@ -3,7 +3,7 @@ class Entity
 
   def initialize(id)
     raise 'Abstract classes can\'t be instantiated.' if self.instance_of?(Entity)
-    @id = id || Random.rand(1..100)
+    @id = id || Random.rand(1..999)
   end
 
   def to_hash
