@@ -1,20 +1,37 @@
 require_relative '../components/book_component'
-require_relative '../../../../shared/views/screen-managers/entity_screen_manager'
+require_relative './item_screen_manager'
 
-class bookScreenManager < EntityScreenManager
-  def initialize(create_book:, list_books:)
-    super(list_all: list_books, component_class: bookComponent)
+class BookScreenManager < ItemScreenManager
+  def initialize(
+    create_book:,
+    list_books:,
+    genres_screen_manager:,
+    authors_screen_manager:,
+    labels_screen_manager:
+  )
+    super(
+      item_component_class: BookComponent,
+      list_items: list_books,
+      genres_screen_manager: genres_screen_manager,
+      authors_screen_manager: authors_screen_manager,
+      labels_screen_manager: labels_screen_manager
+    )
     @create_book = create_book
   end
 
   def handle_create_book
     handle_errors do
-      title = get_user_input('Enter the book\'s title: ')
-      color = get_user_input('Enter the book\'s color: ')
+      item_attrs = handle_create_item
+
+      return unless item_attrs
+
+      publisher = get_user_input('who published this book?: ')
+      cover_state = get_date_input('What is the state of the book [good/bad]: ')
 
       new_book = @create_book.call(
-        title: title,
-        color: color
+        publisher: publisher,
+        publish_date: publish_date,
+        **item_attrs
       )
 
       print_success_entity_creation('book', new_book)

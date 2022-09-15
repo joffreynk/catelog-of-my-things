@@ -1,11 +1,11 @@
 require_relative '../../models/book'
 
-class ListLabelsService
-  def initialize(labels_repository)
-    @labels_repository = labels_repository
+class ListBooksService
+  def initialize(books_repository)
+    @books_repository = books_repository
   end
 
   def execute
-    @labels_repository.fetch_all
+    @books_repository.fetch_all
   end
 end

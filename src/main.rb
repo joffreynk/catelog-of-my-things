@@ -12,6 +12,11 @@ require_relative './modules/genre/repositories/disk_genres_repository'
 require_relative './modules/genre/services/create-genre/create_genre_service'
 require_relative './modules/genre/services/list-genres/list_genres_service'
 
+require_relative './modules/item/repositories/disk_books_repository'
+require_relative './modules/item/services/create-book/create_book_service'
+require_relative './modules/item/services/list-books/list_books_service'
+
+
 def main
   loop_lock = true
 
@@ -19,6 +24,12 @@ def main
   authors_repository = DiskAuthorsRepository.new
   labels_repository = DiskLabelsRepository.new
   genre_repository = DiskGenresRepository.new
+  books_repository = DiskBooksRepository.new
+  # (
+  #   genres_repository,
+  #   authors_repository,
+  #   labels_repository
+  # )
 
   # Initialize the Author services:
   create_author_service = CreateAuthorService.new(authors_repository)
@@ -32,10 +43,23 @@ def main
   create_genre_service = CreateGenreService.new(genre_repository)
   list_genres_service = ListGenresService.new(genre_repository)
 
+   # Initialize the book services:
+   create_book_service = CreateBookService.new(
+    books_repository,
+    genre_repository,
+    authors_repository,
+    labels_repository
+  )
+  list_books_service = ListBooksService.new(books_repository)
+
   handlers = {
     game: {
       create: lambda { puts 'Function to create a game.' },
       list: lambda { puts 'Function to list all games.' }
+    },
+    book: {
+      create: lambda { |req| create_book_service.execute(req) },
+      list: lambda { list_books_service.execute  }
     },
     genre: {
       create: lambda { |req| create_genre_service.execute(req) },
