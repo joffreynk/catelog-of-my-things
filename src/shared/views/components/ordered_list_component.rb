@@ -8,7 +8,8 @@ class OrderedListComponent < Component
 
   def to_string
     str_arr = @data.map.with_index do |item, index|
-      "#{@wrap_number.call(index + 1)}#{item}"
+      line = item.is_a?(Array) ? item[0] : item
+      "#{@wrap_number.call(index + 1)}#{line}"
     end
     str_arr
   end

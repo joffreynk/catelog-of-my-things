@@ -7,6 +7,13 @@ class EntityScreenManager
     @component_class = component_class
   end
 
+  def empty?
+    handle_errors do
+      entities = @list_all.call
+      entities.empty?
+    end
+  end
+
   protected
 
   def handle_list_all(empty_message)
