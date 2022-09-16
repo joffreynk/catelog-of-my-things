@@ -7,22 +7,20 @@ require_relative '../../../label/models/label'
 publisher = 'Joffrey'
 cover_state = 'good'
 publish_date = '2018-10-10'
-id = 1
-
 
 describe Book do
   before(:each) do
     @genre = Genre.new('Tech')
-    @author= Author.new('Joffrey', 'Doe')
+    @author = Author.new('Joffrey', 'Doe')
     @label = Label.new(title: 'full ruby course', color: 'blue')
     @book = Book.new(
-        genre:  @genre,
-        author:  @author,
-        label:  @label,
-        publisher: publisher,
-        cover_state: cover_state,
-        archived:false,
-        publish_date: publish_date,
+      genre: @genre,
+      author: @author,
+      label: @label,
+      publisher: publisher,
+      cover_state: cover_state,
+      archived: false,
+      publish_date: publish_date
     )
   end
 
@@ -34,7 +32,7 @@ describe Book do
     it 'should not create a new Book object without parameters' do
       expect { Book.new }.to raise_error(ArgumentError)
     end
-end
+  end
 
   describe '#cover state' do
     it 'returns the value of  cover state' do

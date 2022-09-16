@@ -2,11 +2,11 @@ require 'date'
 require_relative '../game'
 
 FAKE_MULTIPLAYER ||= false
-FAKE_LAST_PLAYED_AT ||= '2020-10-10'
-FAKE_PUBLISH_DATE ||= '2018-10-10'
+FAKE_LAST_PLAYED_AT ||= '2020-10-10'.freeze
+FAKE_PUBLISH_DATE ||= '2018-10-10'.freeze
 FAKE_ID ||= 1
 
-def create_game_object(fake_id=nil)
+def create_game_object(fake_id = nil)
   fake_entity = double('entity')
 
   allow(fake_entity).to receive(:id) { fake_id }

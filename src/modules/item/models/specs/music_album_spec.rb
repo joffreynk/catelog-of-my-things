@@ -2,10 +2,10 @@ require 'date'
 require_relative '../music_album'
 
 FAKE_ON_SPOTIFY ||= true
-FAKE_PUBLISH_DATE ||= '2018-10-10'
+FAKE_PUBLISH_DATE ||= '2018-10-10'.freeze
 FAKE_ID ||= 1
 
-def create_music_album_object(fake_id=nil)
+def create_music_album_object(fake_id = nil)
   fake_entity = double('entity')
 
   allow(fake_entity).to receive(:id) { fake_id }

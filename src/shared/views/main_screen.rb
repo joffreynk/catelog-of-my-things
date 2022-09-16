@@ -7,7 +7,7 @@ require_relative '../../modules/item/views/screen-managers/game_screen_manager'
 require_relative '../../modules/item/views/screen-managers/music_album_screen_manager'
 
 class MainScreen
-  def initialize(handlers)
+  def initialize(handlers) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
     @handlers = handlers
 
     author_screen_manager = AuthorScreenManager.new(

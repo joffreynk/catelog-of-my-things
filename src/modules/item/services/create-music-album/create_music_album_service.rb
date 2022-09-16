@@ -27,22 +27,22 @@ class CreateMusicAlbumService
     )
     genre = @genres_repository.find_by_id(genre_id)
 
-    raise StandardError.new("No genre with the ID #{genre_id}.") unless genre
+    raise StandardError, "No genre with the ID #{genre_id}." unless genre
 
     author = @authors_repository.find_by_id(author_id)
 
-    raise StandardError.new("No author with the ID #{author_id}.") unless author
+    raise StandardError, "No author with the ID #{author_id}." unless author
 
     label = @labels_repository.find_by_id(label_id)
 
-    raise StandardError.new("No label with the ID #{label_id}.") unless label
+    raise StandardError, "No label with the ID #{label_id}." unless label
 
     new_music_album = MusicAlbum.new(
       genre: genre,
       author: author,
       label: label,
       on_spotify: on_spotify,
-      publish_date: publish_date,
+      publish_date: publish_date
     )
     @music_albums_repository.save(new_music_album)
     new_music_album

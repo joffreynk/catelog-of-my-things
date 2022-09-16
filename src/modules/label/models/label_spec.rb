@@ -6,7 +6,7 @@ id ||= 1
 
 describe Label do
   before(:each) do
-    @label = Label.new(title:title, color:color, id: id)
+    @label = Label.new(title: title, color: color, id: id)
   end
 
   describe '#new' do
@@ -35,7 +35,7 @@ describe Label do
       fake_label_hash = {
         id: id,
         title: title,
-        color:color
+        color: color
       }
       expect(@label.to_hash).to eq fake_label_hash
     end

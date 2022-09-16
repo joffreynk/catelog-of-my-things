@@ -2,8 +2,8 @@ require_relative './create_game_service'
 require_relative '../../../../shared/repositories/memory_repository'
 
 FAKE_MULTIPLAYER ||= false
-FAKE_LAST_PLAYED_AT ||= '2020-10-10'
-FAKE_PUBLISH_DATE ||= '2018-10-10'
+FAKE_LAST_PLAYED_AT ||= '2020-10-10'.freeze
+FAKE_PUBLISH_DATE ||= '2018-10-10'.freeze
 FAKE_ID ||= 1
 
 describe CreateGameService do
@@ -13,7 +13,7 @@ describe CreateGameService do
     fake_entities_repository = double('entities_repository')
 
     allow(fake_entity).to receive(:add_item) { |item| item }
-    allow(fake_entities_repository).to receive(:find_by_id) { |id| fake_entity }
+    allow(fake_entities_repository).to receive(:find_by_id) { |_id| fake_entity }
 
     @create_game_service = CreateGameService.new(
       games_repository: @games_repository,
