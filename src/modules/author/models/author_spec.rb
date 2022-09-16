@@ -1,11 +1,12 @@
 require_relative './author'
 
-FAKE_FIRST_NAME = 'John'
-FAKE_LAST_NAME = 'Doe'
+FAKE_FIRST_NAME ||= 'John'
+FAKE_LAST_NAME ||= 'Doe'
+FAKE_ID ||= 1
 
 describe Author do
   before(:each) do
-    @author = Author.new(FAKE_FIRST_NAME, FAKE_LAST_NAME)
+    @author = Author.new(FAKE_FIRST_NAME, FAKE_LAST_NAME, id: FAKE_ID)
   end
 
   describe '#new' do
@@ -26,6 +27,17 @@ describe Author do
       end
 
       expect(new_authors_ids).not_to include(@author.id)
+    end
+  end
+
+  describe '#to_hash' do
+    it 'returns the correct hash representation of an Author object' do
+      fake_author_hash = {
+        id: FAKE_ID,
+        first_name: FAKE_FIRST_NAME,
+        last_name:FAKE_LAST_NAME
+      }
+      expect(@author.to_hash).to eq fake_author_hash
     end
   end
 
