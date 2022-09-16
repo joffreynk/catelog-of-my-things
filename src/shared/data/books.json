@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1827,
+    "publisher": "AwesomePress",
+    "cover_state": "good",
+    "genre_id": 42,
+    "author_id": 88,
+    "label_id": 78,
+    "archived": false,
+    "publish_date": "2022-03-03"
+  },
+  {
+    "id": 2742,
+    "publisher": "PressONE",
+    "cover_state": "good",
+    "genre_id": 1,
+    "author_id": 1,
+    "label_id": 78,
+    "archived": false,
+    "publish_date": "2020-12-15"
+  }
+]

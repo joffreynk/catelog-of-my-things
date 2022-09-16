@@ -49,7 +49,6 @@ def gen_frames(lines_set_array, padding)
       frame = gen_frame(lines_set, padding)
       bind_frame_down(acc, frame)
     end
-    puts "FRAMESSSS: #{frames}"
     frames
   else
     gen_frame(lines_set_array, padding)

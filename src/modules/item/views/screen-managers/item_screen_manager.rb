@@ -18,17 +18,17 @@ class ItemScreenManager < EntityScreenManager
 
   private
 
-  def handle_create_item
+  def handle_create_item(entity_type)
     if @authors_screen_manager.empty?
-      print_message('No authors available. Please, add an author to the system first before trying to add a game.')
+      print_message("No authors available. Please, add an author to the system first before trying to add a #{entity_type}.")
       return nil;
     end
     if @genres_screen_manager.empty?
-      print_message('No genres available. Please, add a genre to the system first before trying to add a game.')
+      print_message("No genres available. Please, add a genre to the system first before trying to add a #{entity_type}.")
       return nil;
     end
     if @labels_screen_manager.empty?
-      print_message('No labels available. Please, add a label to the system first before trying to add a game.')
+      print_message("No labels available. Please, add a label to the system first before trying to add a #{entity_type}.")
       return nil;
     end
 

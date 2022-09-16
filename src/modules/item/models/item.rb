@@ -4,9 +4,6 @@ class Item < Entity
   attr_reader :archived, :genre, :author, :label
   attr_accessor :publish_date
 
-<<<<<<< HEAD
-  def initialize(genre:, author:, label:, archived: false, publish_date:, id:)
-=======
   def initialize(
     genre:,
     author:,
@@ -16,7 +13,6 @@ class Item < Entity
     id:
   )
     raise 'Abstract classes can\'t be instantiated.' if self.instance_of?(Item)
->>>>>>> dev
     super(id)
     @archived = archived
     @publish_date = Date.parse(publish_date)

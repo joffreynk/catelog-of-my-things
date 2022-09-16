@@ -28,7 +28,9 @@ def main
   labels_repository = DiskLabelsRepository.new
   genres_repository = DiskGenresRepository.new
   books_repository = DiskBooksRepository.new(
-    genre_repository
+    genres_repository,
+    authors_repository,
+    labels_repository
   )
   games_repository = DiskGamesRepository.new(
     genres_repository,
@@ -60,7 +62,7 @@ def main
    # Initialize the book services:
    create_book_service = CreateBookService.new(
     books_repository,
-    genre_repository,
+    genres_repository,
     authors_repository,
     labels_repository
   )

@@ -19,7 +19,7 @@ class DiskBooksRepository < DiskRepository
   def parse_json(books_json_data)
     books_hash = JSON.parse(books_json_data)
     books_hash.map do |book_hash|
-      iid,
+      id,
       genre_id,
       author_id,
       label_id,
@@ -31,8 +31,8 @@ class DiskBooksRepository < DiskRepository
         'genre_id',
         'author_id',
         'label_id',
-        'archived',
         'publish_date',
+        'archived',
         'publisher',
         'cover_state'
       )

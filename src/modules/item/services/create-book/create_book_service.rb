@@ -19,20 +19,14 @@ class CreateBookService
     label_id,
     publish_date,
     publisher,
-    cover_state,
-    archived = service_request.values_at(
-      genre_id,
-      author_id,
-      label_id,
-      publish_date,
-      publisher,
-      cover_state,
-      archived
+    cover_state = service_request.values_at(
+      :genre_id,
+      :author_id,
+      :label_id,
+      :publish_date,
+      :publisher,
+      :cover_state,
     )
-
-    puts "Create Book Service - genre_id: #{genre_id}"
-    puts "Create Book Service - author_id: #{author_id}"
-    puts "Create Book Service - label_id: #{label_id}"
 
     genre = @genres_repository.find_by_id(genre_id)
 
@@ -52,7 +46,6 @@ class CreateBookService
       label: label,
       publisher: publisher,
       cover_state: cover_state,
-      archived: archived,
       publish_date: publish_date
     )
     @books_repository.save(new_book)

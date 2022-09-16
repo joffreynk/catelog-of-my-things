@@ -21,7 +21,7 @@ class GameScreenManager < ItemScreenManager
 
   def handle_create_game
     handle_errors do
-      item_attrs = handle_create_item
+      item_attrs = handle_create_item('game')
 
       return unless item_attrs
 
