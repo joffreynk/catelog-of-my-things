@@ -11,9 +11,9 @@ class DiskGenresRepository < DiskRepository
   private
 
   def parse_json(genre_json_data)
-    genre_hash = JSON.parse(genre_json_data)
-    genre_hash.map do |genre_hash|
-      id, name = genre_hash.values_at('id', 'name', )
+    genres_hash = JSON.parse(genre_json_data)
+    genres_hash.map do |genre_hash|
+      id, name = genre_hash.values_at('id', 'name')
       Genre.new(name, id: id)
     end
   end

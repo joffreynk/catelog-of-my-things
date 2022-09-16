@@ -1,4 +1,5 @@
 require 'date'
+require_relative '../../../shared/models/entity'
 
 class Item < Entity
   attr_reader :archived, :genre, :author, :label
@@ -12,7 +13,8 @@ class Item < Entity
     publish_date:,
     id:
   )
-    raise 'Abstract classes can\'t be instantiated.' if self.instance_of?(Item)
+    raise 'Abstract classes can\'t be instantiated.' if instance_of?(Item)
+
     super(id)
     @archived = archived
     @publish_date = Date.parse(publish_date)
@@ -42,9 +44,9 @@ class Item < Entity
   end
 
   private
+
   def can_be_archived?
     curr_year = Date.now.year
     curr_year - @publish_date.year > 10
   end
 end
-

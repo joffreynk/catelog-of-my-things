@@ -4,10 +4,10 @@ class Label < Entity
   attr_accessor :title, :color
   attr_reader :items
 
-  def initialize(title:, color:, id:nil)
+  def initialize(title:, color:, id: nil)
     super(id)
     @title = title
-    @color  = color
+    @color = color
     @items = []
   end
 

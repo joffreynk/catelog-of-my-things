@@ -1,7 +1,7 @@
 require_relative './author'
 
-FAKE_FIRST_NAME ||= 'John'
-FAKE_LAST_NAME ||= 'Doe'
+FAKE_FIRST_NAME ||= 'John'.freeze
+FAKE_LAST_NAME ||= 'Doe'.freeze
 FAKE_ID ||= 1
 
 describe Author do
@@ -35,7 +35,7 @@ describe Author do
       fake_author_hash = {
         id: FAKE_ID,
         first_name: FAKE_FIRST_NAME,
-        last_name:FAKE_LAST_NAME
+        last_name: FAKE_LAST_NAME
       }
       expect(@author.to_hash).to eq fake_author_hash
     end

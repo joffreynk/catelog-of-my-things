@@ -4,7 +4,7 @@ require_relative '../../utils/console.utils'
 
 class MenuComponent < Component
   def to_string
-    ordered_list = OrderedListComponent.new(@data, lambda { |n| "[#{n}] "})
+    ordered_list = OrderedListComponent.new(@data, ->(n) { "[#{n}] " })
     ordered_list.to_string
   end
 

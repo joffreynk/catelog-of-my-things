@@ -14,7 +14,7 @@ class DiskLabelsRepository < DiskRepository
     labels_hash = JSON.parse(labels_json_data)
     labels_hash.map do |label_hash|
       id, title, color = label_hash.values_at('id', 'title', 'color')
-      Label.new(title:title, color:color, id: id)
+      Label.new(title: title, color: color, id: id)
     end
   end
 end

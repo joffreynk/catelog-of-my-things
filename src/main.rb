@@ -24,7 +24,7 @@ require_relative './modules/item/repositories/disk_music_albums_repository'
 require_relative './modules/item/services/create-music-album/create_music_album_service'
 require_relative './modules/item/services/list-music-albums/list_music_albums_service'
 
-def main
+def main # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
   loop_lock = true
 
   # Initialize the Repositories:
@@ -68,8 +68,8 @@ def main
   )
   list_games_service = ListGamesService.new(games_repository)
 
-   # Initialize the Book services:
-   create_book_service = CreateBookService.new(
+  # Initialize the Book services:
+  create_book_service = CreateBookService.new(
     books_repository,
     genres_repository,
     authors_repository,
@@ -77,8 +77,8 @@ def main
   )
   list_books_service = ListBooksService.new(books_repository)
 
-   # Initialize the Music Album services:
-   create_music_album_service = CreateMusicAlbumService.new(
+  # Initialize the Music Album services:
+  create_music_album_service = CreateMusicAlbumService.new(
     music_albums_repository: music_albums_repository,
     genres_repository: genres_repository,
     authors_repository: authors_repository,
@@ -88,40 +88,37 @@ def main
 
   handlers = {
     game: {
-      create: lambda { |req| create_game_service.execute(req) },
-      list: lambda { list_games_service.execute }
+      create: ->(req) { create_game_service.execute(req) },
+      list: -> { list_games_service.execute }
     },
     book: {
-      create: lambda { |req| create_book_service.execute(req) },
-      list: lambda { list_books_service.execute  }
+      create: ->(req) { create_book_service.execute(req) },
+      list: -> { list_books_service.execute }
     },
     music_album: {
-      create: lambda { |req| create_music_album_service.execute(req) },
-      list: lambda { list_music_albums_service.execute  }
+      create: ->(req) { create_music_album_service.execute(req) },
+      list: -> { list_music_albums_service.execute }
     },
     genre: {
-      create: lambda { |req| create_genre_service.execute(req) },
-      list: lambda { list_genres_service.execute }
+      create: ->(req) { create_genre_service.execute(req) },
+      list: -> { list_genres_service.execute }
     },
     label: {
-      create: lambda { |req| create_label_service.execute(req)},
-      list: lambda { list_labels_service.execute }
+      create: ->(req) { create_label_service.execute(req) },
+      list: -> { list_labels_service.execute }
     },
     author: {
-      create: lambda { |req| create_author_service.execute(req) },
-      list: lambda { list_authors_service.execute }
+      create: ->(req) { create_author_service.execute(req) },
+      list: -> { list_authors_service.execute }
     },
     app: {
-      exit: lambda { loop_lock = false }
+      exit: -> { loop_lock = false }
     }
   }
 
   main_screen = MainScreen.new(handlers)
 
-  while loop_lock
-    main_screen.build
-  end
+  main_screen.build while loop_lock
 end
 
 main
-

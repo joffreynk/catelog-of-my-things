@@ -8,9 +8,11 @@ AllCops:
   DisplayCopNames: true
 
 Layout/LineLength:
-  Max: 120
+  Max: 200
 Metrics/MethodLength:
   Max: 50
+Metrics/ParameterLists:
+  Max: 10
 Metrics/AbcSize:
   Max: 50
 Metrics/ClassLength:
@@ -47,6 +49,8 @@ Layout/MultilineMethodCallIndentation:
 Lint/RaiseException:
   Enabled: false
 Lint/StructNewOverride:
+  Enabled: false
+Lint/OrAssignmentToConstant:
   Enabled: false
 Style/HashEachMethods:
   Enabled: false

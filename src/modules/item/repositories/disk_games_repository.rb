@@ -50,7 +50,7 @@ class DiskGamesRepository < DiskRepository
         last_played_at: last_played_at,
         publish_date: publish_date,
         archived: archived,
-        id: id,
+        id: id
       )
     end
   end

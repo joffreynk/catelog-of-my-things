@@ -2,7 +2,8 @@ require_relative '../components/ordered_list_component'
 
 class EntityScreenManager
   def initialize(list_all:, component_class:)
-    raise 'Abstract classes can\'t be instantiated.' if self.instance_of?(EntityScreenManager)
+    raise 'Abstract classes can\'t be instantiated.' if instance_of?(EntityScreenManager)
+
     @list_all = list_all
     @component_class = component_class
   end
@@ -38,10 +39,8 @@ class EntityScreenManager
   end
 
   def handle_errors
-    begin
-      yield
-    rescue => exception
-      print_message("Error: #{exception.message}")
-    end
+    yield
+  rescue StandardError => e
+    print_message("Error: #{e.message}")
   end
 end
