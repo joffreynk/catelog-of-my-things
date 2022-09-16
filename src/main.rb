@@ -16,6 +16,9 @@ require_relative './modules/item/repositories/disk_books_repository'
 require_relative './modules/item/services/create-book/create_book_service'
 require_relative './modules/item/services/list-books/list_books_service'
 
+require_relative './modules/item/repositories/disk_games_repository'
+require_relative './modules/item/services/create-game/create_game_service'
+require_relative './modules/item/services/list-games/list_games_service'
 
 def main
   loop_lock = true
@@ -23,9 +26,12 @@ def main
   # Initialize the Repositories:
   authors_repository = DiskAuthorsRepository.new
   labels_repository = DiskLabelsRepository.new
-  genre_repository = DiskGenresRepository.new
+  genres_repository = DiskGenresRepository.new
   books_repository = DiskBooksRepository.new(
-    genre_repository,
+    genre_repository
+  )
+  games_repository = DiskGamesRepository.new(
+    genres_repository,
     authors_repository,
     labels_repository
   )
@@ -39,8 +45,17 @@ def main
   list_labels_service = ListLabelsService.new(labels_repository)
 
   # Initialize the Genre services:
-  create_genre_service = CreateGenreService.new(genre_repository)
-  list_genres_service = ListGenresService.new(genre_repository)
+  create_genre_service = CreateGenreService.new(genres_repository)
+  list_genres_service = ListGenresService.new(genres_repository)
+
+  # Initialize the game services:
+  create_game_service = CreateGameService.new(
+    games_repository: games_repository,
+    genres_repository: genres_repository,
+    authors_repository: authors_repository,
+    labels_repository: labels_repository
+  )
+  list_games_service = ListGamesService.new(games_repository)
 
    # Initialize the book services:
    create_book_service = CreateBookService.new(
@@ -53,8 +68,8 @@ def main
 
   handlers = {
     game: {
-      create: lambda { puts 'Function to create a game.' },
-      list: lambda { puts 'Function to list all games.' }
+      create: lambda { |req| create_game_service.execute(req) },
+      list: lambda { list_games_service.execute }
     },
     book: {
       create: lambda { |req| create_book_service.execute(req) },

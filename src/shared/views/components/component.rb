@@ -10,6 +10,6 @@ class Component
   end
 
   def render
-    puts gen_frame(@component_str.is_a?(String) ? [@component_str] : @component_str, 5)
+    puts gen_frames(@component_str.is_a?(String) ? [@component_str] : @component_str, 5)
   end
 end

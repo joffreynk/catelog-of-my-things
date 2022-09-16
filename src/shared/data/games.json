@@ -1,0 +1,32 @@
+[
+  {
+    "id": 590,
+    "archived": false,
+    "publish_date": "2022-09-09",
+    "last_played_at": "2022-09-09",
+    "multiplayer": true,
+    "label_id": 1,
+    "author_id": 1,
+    "genre_id": 1
+  },
+  {
+    "id": 807,
+    "archived": false,
+    "publish_date": "2020-09-09",
+    "last_played_at": "2022-09-09",
+    "multiplayer": true,
+    "label_id": 78,
+    "author_id": 27,
+    "genre_id": 42
+  },
+  {
+    "id": 49,
+    "archived": false,
+    "publish_date": "2022-04-06",
+    "last_played_at": "2022-07-07",
+    "multiplayer": true,
+    "label_id": 3,
+    "author_id": 3,
+    "genre_id": 3
+  }
+]
