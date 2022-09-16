@@ -14,14 +14,15 @@ class BookScreenManager < ItemScreenManager
       list_items: list_books,
       genres_screen_manager: genres_screen_manager,
       authors_screen_manager: authors_screen_manager,
-      labels_screen_manager: labels_screen_manager
+      labels_screen_manager: labels_screen_manager,
+      entity_type: 'book'
     )
     @create_book = create_book
   end
 
   def handle_create_book
     handle_errors do
-      item_attrs = handle_create_item('book')
+      item_attrs = handle_create_item
 
       return unless item_attrs
 
@@ -34,7 +35,7 @@ class BookScreenManager < ItemScreenManager
         **item_attrs
       )
 
-      print_success_entity_creation('book', new_book)
+      print_success_entity_creation(new_book)
     end
   end
 

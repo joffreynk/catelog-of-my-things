@@ -15,7 +15,7 @@ class DiskGamesRepository < DiskRepository
     super('./src/shared/data/games.json')
   end
 
-  protected
+  private
 
   def parse_json(games_json_data)
     games_hash = JSON.parse(games_json_data)

@@ -8,7 +8,7 @@ class DiskAuthorsRepository < DiskRepository
    super('./src/shared/data/authors.json')
   end
 
-  protected
+  private
 
   def parse_json(authors_json_data)
     authors_hash = JSON.parse(authors_json_data)

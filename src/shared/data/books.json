@@ -18,5 +18,15 @@
     "label_id": 78,
     "archived": false,
     "publish_date": "2020-12-15"
+  },
+  {
+    "id": 8147,
+    "publisher": "SomePress",
+    "cover_state": "good",
+    "genre_id": 3,
+    "author_id": 2,
+    "label_id": 6,
+    "archived": false,
+    "publish_date": "2021-08-08"
   }
 ]

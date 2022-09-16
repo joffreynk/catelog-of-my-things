@@ -7,28 +7,30 @@ class ItemScreenManager < EntityScreenManager
     list_items:,
     genres_screen_manager:,
     authors_screen_manager:,
-    labels_screen_manager:
+    labels_screen_manager:,
+    entity_type:
   )
     raise 'Abstract classes can\'t be instantiated.' if self.instance_of?(ItemScreenManager)
     super(list_all: list_items, component_class: item_component_class)
     @genres_screen_manager = genres_screen_manager
     @authors_screen_manager = authors_screen_manager
     @labels_screen_manager = labels_screen_manager
+    @entity_type = entity_type
   end
 
   private
 
-  def handle_create_item(entity_type)
+  def handle_create_item
     if @authors_screen_manager.empty?
-      print_message("No authors available. Please, add an author to the system first before trying to add a #{entity_type}.")
+      print_message("No authors available. Please, add an author to the system first before trying to add a #{@entity_type}.")
       return nil;
     end
     if @genres_screen_manager.empty?
-      print_message("No genres available. Please, add a genre to the system first before trying to add a #{entity_type}.")
+      print_message("No genres available. Please, add a genre to the system first before trying to add a #{@entity_type}.")
       return nil;
     end
     if @labels_screen_manager.empty?
-      print_message("No labels available. Please, add a label to the system first before trying to add a #{entity_type}.")
+      print_message("No labels available. Please, add a label to the system first before trying to add a #{@entity_type}.")
       return nil;
     end
 
@@ -47,5 +49,9 @@ class ItemScreenManager < EntityScreenManager
       label_id: label_id,
       publish_date: publish_date
     }
+  end
+
+  def print_success_entity_creation(entity_created)
+   super(@entity_type, entity_created)
   end
 end

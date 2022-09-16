@@ -14,7 +14,7 @@ class EntityScreenManager
     end
   end
 
-  protected
+  private
 
   def handle_list_all(empty_message)
     handle_errors do

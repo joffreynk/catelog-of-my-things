@@ -15,7 +15,8 @@ class DiskBooksRepository < DiskRepository
     super('./src/shared/data/books.json')
   end
 
-  protected
+  private
+
   def parse_json(books_json_data)
     books_hash = JSON.parse(books_json_data)
     books_hash.map do |book_hash|
