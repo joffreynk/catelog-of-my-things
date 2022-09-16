@@ -1,6 +1,7 @@
 require_relative '../components/book_component'
 require_relative './item_screen_manager'
 
+
 class BookScreenManager < ItemScreenManager
   def initialize(
     create_book:,

@@ -24,12 +24,11 @@ def main
   authors_repository = DiskAuthorsRepository.new
   labels_repository = DiskLabelsRepository.new
   genre_repository = DiskGenresRepository.new
-  books_repository = DiskBooksRepository.new
-  # (
-  #   genres_repository,
-  #   authors_repository,
-  #   labels_repository
-  # )
+  books_repository = DiskBooksRepository.new(
+    genre_repository,
+    authors_repository,
+    labels_repository
+  )
 
   # Initialize the Author services:
   create_author_service = CreateAuthorService.new(authors_repository)

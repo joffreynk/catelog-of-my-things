@@ -4,12 +4,18 @@ require_relative '../models/book'
 require_relative '../../../shared/repositories/disk_repository'
 
 class DiskBooksRepository < DiskRepository
-  def initialize
+  def initialize(
+    genres_repository,
+    authors_repository,
+    labels_repository
+  )
+    @genres_repository = genres_repository
+    @authors_repository = authors_repository
+    @labels_repository = labels_repository
     super('./src/shared/data/books.json')
   end
 
   protected
-
   def parse_json(books_json_data)
     books_hash = JSON.parse(books_json_data)
     books_hash.map do |book_hash|

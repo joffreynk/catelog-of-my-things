@@ -4,7 +4,7 @@ class Item < Entity
   attr_reader :archived, :genre, :author, :label
   attr_accessor :publish_date
 
-  def initialize(genre:, author:, label:, archived: false, publish_date: DateTime.now, id: nil)
+  def initialize(genre:, author:, label:, archived: false, publish_date:, id:)
     super(id)
     @archived = archived
     @publish_date = publish_date
@@ -34,7 +34,6 @@ class Item < Entity
   end
 
   private
-
   def can_be_archived?
     now = Date.now.year
     now - @publish_date.year > 10
