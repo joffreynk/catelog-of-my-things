@@ -13,7 +13,8 @@ class Book < Item
     cover_state:,
     archived: false,
     publish_date: DateTime.now,
-    id: nil)
+    id: nil
+  )
     super(
       genre: genre,
       author: author,

@@ -1,7 +1,7 @@
 require_relative './author'
 
-FAKE_FIRST_NAME = 'John'
-FAKE_LAST_NAME = 'Doe'
+FAKE_FIRST_NAME = 'John'.freeze
+FAKE_LAST_NAME = 'Doe'.freeze
 
 describe Author do
   before(:each) do

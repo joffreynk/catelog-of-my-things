@@ -5,7 +5,7 @@ require_relative '../../../shared/repositories/disk_repository'
 
 class DiskAuthorsRepository < DiskRepository
   def initialize
-   super('./src/shared/data/authors.json')
+    super('./src/shared/data/authors.json')
   end
 
   private

@@ -45,11 +45,11 @@ end
 
 def gen_frames(lines_set_array, padding)
   if lines_set_array[0].is_a?(Array)
-    frames = lines_set_array.reduce([]) do |acc, lines_set|
+    lines_set_array.reduce([]) do |acc, lines_set|
       frame = gen_frame(lines_set, padding)
       bind_frame_down(acc, frame)
     end
-    frames
+
   else
     gen_frame(lines_set_array, padding)
   end

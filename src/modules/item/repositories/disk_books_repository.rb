@@ -50,7 +50,7 @@ class DiskBooksRepository < DiskRepository
         cover_state: cover_state,
         archived: archived,
         publish_date: publish_date,
-        id: id,
+        id: id
       )
     end
   end

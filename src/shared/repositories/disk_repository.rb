@@ -5,7 +5,8 @@ require_relative '../utils/file.utils'
 
 class DiskRepository
   def initialize(file_path)
-    raise 'Abstract classes can\'t be instantiated.' if self.instance_of?(DiskRepository)
+    raise 'Abstract classes can\'t be instantiated.' if instance_of?(DiskRepository)
+
     @file_path = file_path
     entities_json_data = read_entities_file
     @memory_repository = MemoryRepository.new(
@@ -45,8 +46,8 @@ class DiskRepository
     raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
   end
 
-  def to_json
-    entities_hash = @memory_repository.fetch_all.map { |entity| entity.to_hash }
+  def to_json(*_args)
+    entities_hash = @memory_repository.fetch_all.map(&:to_hash)
     JSON.pretty_generate(entities_hash)
   end
 end

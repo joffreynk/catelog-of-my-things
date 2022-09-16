@@ -88,7 +88,10 @@ class MainScreen
       },
       {
         title: 'Exit.',
-        handler: lambda { puts 'Exit'; handlers[:app][:exit].call }
+        handler: lambda {
+                   puts 'Exit'
+                   handlers[:app][:exit].call
+                 }
       }
     ]
   end
