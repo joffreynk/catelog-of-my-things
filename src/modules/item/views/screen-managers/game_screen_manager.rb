@@ -14,7 +14,8 @@ class GameScreenManager < ItemScreenManager
       list_items: list_games,
       genres_screen_manager: genres_screen_manager,
       authors_screen_manager: authors_screen_manager,
-      labels_screen_manager: labels_screen_manager
+      labels_screen_manager: labels_screen_manager,
+      entity_type: 'game'
     )
     @create_game = create_game
   end
@@ -34,7 +35,7 @@ class GameScreenManager < ItemScreenManager
         **item_attrs
       )
 
-      print_success_entity_creation('game', new_game)
+      print_success_entity_creation(new_game)
     end
   end
 

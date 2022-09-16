@@ -8,7 +8,7 @@ class DiskLabelsRepository < DiskRepository
     super('./src/shared/data/labels.json')
   end
 
-  protected
+  private
 
   def parse_json(labels_json_data)
     labels_hash = JSON.parse(labels_json_data)

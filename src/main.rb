@@ -12,6 +12,10 @@ require_relative './modules/genre/repositories/disk_genres_repository'
 require_relative './modules/genre/services/create-genre/create_genre_service'
 require_relative './modules/genre/services/list-genres/list_genres_service'
 
+require_relative './modules/item/repositories/disk_books_repository'
+require_relative './modules/item/services/create-book/create_book_service'
+require_relative './modules/item/services/list-books/list_books_service'
+
 require_relative './modules/item/repositories/disk_games_repository'
 require_relative './modules/item/services/create-game/create_game_service'
 require_relative './modules/item/services/list-games/list_games_service'
@@ -23,6 +27,11 @@ def main
   authors_repository = DiskAuthorsRepository.new
   labels_repository = DiskLabelsRepository.new
   genres_repository = DiskGenresRepository.new
+  books_repository = DiskBooksRepository.new(
+    genres_repository,
+    authors_repository,
+    labels_repository
+  )
   games_repository = DiskGamesRepository.new(
     genres_repository,
     authors_repository,
@@ -50,10 +59,23 @@ def main
   )
   list_games_service = ListGamesService.new(games_repository)
 
+   # Initialize the book services:
+   create_book_service = CreateBookService.new(
+    books_repository,
+    genres_repository,
+    authors_repository,
+    labels_repository
+  )
+  list_books_service = ListBooksService.new(books_repository)
+
   handlers = {
     game: {
       create: lambda { |req| create_game_service.execute(req) },
       list: lambda { list_games_service.execute }
+    },
+    book: {
+      create: lambda { |req| create_book_service.execute(req) },
+      list: lambda { list_books_service.execute  }
     },
     genre: {
       create: lambda { |req| create_genre_service.execute(req) },

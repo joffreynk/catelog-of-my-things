@@ -8,7 +8,7 @@ class DiskGenresRepository < DiskRepository
     super('./src/shared/data/genres.json')
   end
 
-  protected
+  private
 
   def parse_json(genre_json_data)
     genre_hash = JSON.parse(genre_json_data)

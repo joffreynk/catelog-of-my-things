@@ -42,7 +42,6 @@ class Item < Entity
   end
 
   private
-
   def can_be_archived?
     curr_year = Date.now.year
     curr_year - @publish_date.year > 10

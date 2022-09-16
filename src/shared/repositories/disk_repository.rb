@@ -31,7 +31,7 @@ class DiskRepository
     @memory_repository.empty?
   end
 
-  protected
+  private
 
   def read_entities_file
     read_file(@file_path)

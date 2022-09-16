@@ -2,6 +2,7 @@ require_relative './components/menu_component'
 require_relative '../../modules/author/views/screen-managers/author_screen_manager'
 require_relative '../../modules/label/views/screen-managers/label_screen_manager'
 require_relative '../../modules/genre/views/screen-managers/genre_screen_manager'
+require_relative '../../modules/item/views/screen-managers/book_screen_manager'
 require_relative '../../modules/item/views/screen-managers/game_screen_manager'
 
 class MainScreen
@@ -28,10 +29,18 @@ class MainScreen
       labels_screen_manager: label_screen_manager
     )
 
+    book_screen_manager = BookScreenManager.new(
+      create_book: handlers[:book][:create],
+      list_books: handlers[:book][:list],
+      genres_screen_manager: genre_screen_manager,
+      authors_screen_manager: author_screen_manager,
+      labels_screen_manager: label_screen_manager
+    )
+
     @main_options = [
       {
         title: 'List all books.',
-        handler: -> { puts 'Option selected' }
+        handler: -> { book_screen_manager.handle_list_books }
       },
       {
         title: 'List all music albums.',
@@ -55,7 +64,7 @@ class MainScreen
       },
       {
         title: 'Add a book.',
-        handler: -> { puts 'Option selected' }
+        handler: -> { book_screen_manager.handle_create_book }
       },
       {
         title: 'Add a music album.',
