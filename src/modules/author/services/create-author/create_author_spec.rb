@@ -17,8 +17,8 @@ describe CreateAuthorService do
     )
     authors = @authors_repository.fetch_all
 
-    expect(new_author).to  have_attributes(first_name: first_name)
-    expect(new_author).to  have_attributes(last_name: last_name)
     expect(authors.length).to eq(1)
+    expect(new_author).to have_attributes(first_name: first_name)
+    expect(new_author).to have_attributes(last_name: last_name)
   end
 end

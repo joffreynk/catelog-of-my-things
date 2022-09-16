@@ -27,11 +27,6 @@ class CreateGameService
       :last_played_at,
       :publish_date
     )
-
-    puts "CreateGameService - genre_id: #{genre_id}"
-    puts "CreateGameService - author_id: #{author_id}"
-    puts "CreateGameService - label_id: #{label_id}"
-
     genre = @genres_repository.find_by_id(genre_id)
 
     raise StandardError.new("No genre with the ID #{genre_id}.") unless genre
