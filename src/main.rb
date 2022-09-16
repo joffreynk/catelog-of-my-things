@@ -20,6 +20,10 @@ require_relative './modules/item/repositories/disk_games_repository'
 require_relative './modules/item/services/create-game/create_game_service'
 require_relative './modules/item/services/list-games/list_games_service'
 
+require_relative './modules/item/repositories/disk_music_albums_repository'
+require_relative './modules/item/services/create-music-album/create_music_album_service'
+require_relative './modules/item/services/list-music-albums/list_music_albums_service'
+
 def main
   loop_lock = true
 
@@ -37,6 +41,11 @@ def main
     authors_repository,
     labels_repository
   )
+  music_albums_repository = DiskMusicAlbumsRepository.new(
+    genres_repository,
+    authors_repository,
+    labels_repository
+  )
 
   # Initialize the Author services:
   create_author_service = CreateAuthorService.new(authors_repository)
@@ -50,7 +59,7 @@ def main
   create_genre_service = CreateGenreService.new(genres_repository)
   list_genres_service = ListGenresService.new(genres_repository)
 
-  # Initialize the game services:
+  # Initialize the Game services:
   create_game_service = CreateGameService.new(
     games_repository: games_repository,
     genres_repository: genres_repository,
@@ -59,14 +68,23 @@ def main
   )
   list_games_service = ListGamesService.new(games_repository)
 
-  # Initialize the book services:
-  create_book_service = CreateBookService.new(
+   # Initialize the Book services:
+   create_book_service = CreateBookService.new(
     books_repository,
     genres_repository,
     authors_repository,
     labels_repository
   )
   list_books_service = ListBooksService.new(books_repository)
+
+   # Initialize the Music Album services:
+   create_music_album_service = CreateMusicAlbumService.new(
+    music_albums_repository: music_albums_repository,
+    genres_repository: genres_repository,
+    authors_repository: authors_repository,
+    labels_repository: labels_repository
+  )
+  list_music_albums_service = ListMusicAlbumsService.new(music_albums_repository)
 
   handlers = {
     game: {
@@ -76,6 +94,10 @@ def main
     book: {
       create: ->(req) { create_book_service.execute(req) },
       list: -> { list_books_service.execute }
+    },
+    music_album: {
+      create: lambda { |req| create_music_album_service.execute(req) },
+      list: lambda { list_music_albums_service.execute  }
     },
     genre: {
       create: ->(req) { create_genre_service.execute(req) },

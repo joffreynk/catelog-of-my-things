@@ -1,13 +1,13 @@
-require_relative '../../models/game'
+require_relative '../../models/music_album'
 
-class CreateGameService
+class CreateMusicAlbumService
   def initialize(
-    games_repository:,
+    music_albums_repository:,
     genres_repository:,
     authors_repository:,
     labels_repository:
   )
-    @games_repository = games_repository
+    @music_albums_repository = music_albums_repository
     @genres_repository = genres_repository
     @authors_repository = authors_repository
     @labels_repository = labels_repository
@@ -17,37 +17,34 @@ class CreateGameService
     genre_id,
     author_id,
     label_id,
-    multiplayer,
-    last_played_at,
+    on_spotify,
     publish_date = service_request.values_at(
       :genre_id,
       :author_id,
       :label_id,
-      :multiplayer,
-      :last_played_at,
+      :on_spotify,
       :publish_date
     )
     genre = @genres_repository.find_by_id(genre_id)
 
-    raise StandardError, "No genre with the ID #{genre_id}." unless genre
+    raise StandardError.new("No genre with the ID #{genre_id}.") unless genre
 
     author = @authors_repository.find_by_id(author_id)
 
-    raise StandardError, "No author with the ID #{author_id}." unless author
+    raise StandardError.new("No author with the ID #{author_id}.") unless author
 
     label = @labels_repository.find_by_id(label_id)
 
-    raise StandardError, "No label with the ID #{label_id}." unless label
+    raise StandardError.new("No label with the ID #{label_id}.") unless label
 
-    new_game = Game.new(
+    new_music_album = MusicAlbum.new(
       genre: genre,
       author: author,
       label: label,
-      multiplayer: multiplayer,
-      last_played_at: last_played_at,
-      publish_date: publish_date
+      on_spotify: on_spotify,
+      publish_date: publish_date,
     )
-    @games_repository.save(new_game)
-    new_game
+    @music_albums_repository.save(new_music_album)
+    new_music_album
   end
 end

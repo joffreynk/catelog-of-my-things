@@ -1,4 +1,5 @@
 require 'date'
+require_relative '../../../shared/models/entity'
 
 class Item < Entity
   attr_reader :archived, :genre, :author, :label
