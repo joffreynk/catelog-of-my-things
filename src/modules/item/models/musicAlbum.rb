@@ -7,6 +7,7 @@ def initialize (
   id:nil
   genre:,
   author:,
+  on_spotify:
   label:,
   archived: false,
   publish_date:DateTime.now,
@@ -20,7 +21,7 @@ super(
   publish_date: publish_date
 
 )
-@on_spotify=
+@on_spotify=on_spotify?
 end
 
 def can_be_archived?
