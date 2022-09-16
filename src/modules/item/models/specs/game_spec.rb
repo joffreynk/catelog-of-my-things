@@ -6,7 +6,7 @@ FAKE_LAST_PLAYED_AT ||= '2020-10-10'
 FAKE_PUBLISH_DATE ||= '2018-10-10'
 FAKE_ID ||= 1
 
-def createGameObject(fake_id=nil)
+def create_game_object(fake_id=nil)
   fake_entity = double('entity')
 
   allow(fake_entity).to receive(:id) { fake_id }
@@ -25,7 +25,7 @@ end
 
 describe Game do
   before(:each) do
-    @game = createGameObject(FAKE_ID)
+    @game = create_game_object(FAKE_ID)
   end
 
   describe '#new' do
@@ -42,7 +42,7 @@ describe Game do
       new_games_ids = []
 
       new_games_to_create.times do
-        new_game = createGameObject
+        new_game = create_game_object
         new_games_ids.push(new_game.id)
       end
 
