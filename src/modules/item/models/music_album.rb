@@ -1,27 +1,27 @@
 require_relative './item.rb'
 
-class MusicAlbum > item
+class MusicAlbum < Item
 attr_accessor :on_spotify
 
 def initialize (
-  id:nil
+  id:nil,
   genre:,
   author:,
-  on_spotify:
   label:,
+  on_spotify:,
   archived: false,
-  publish_date:DateTime.now,
+  publish_date:DateTime.now
 )
 super(
-  id: id
+  id: id,
   genre: genre,
-  author: author
+  author: author,
   label: label,
   archived: archived,
   publish_date: publish_date
-
 )
-@on_spotify=on_spotify
+
+@on_spotify = on_spotify
 end
 
 def to_hash
@@ -37,7 +37,6 @@ def to_hash
 end
 
 private
-
 
 def can_be_archived?
  super && @on_spotify

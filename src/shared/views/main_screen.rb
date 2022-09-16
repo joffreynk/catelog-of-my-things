@@ -4,6 +4,7 @@ require_relative '../../modules/label/views/screen-managers/label_screen_manager
 require_relative '../../modules/genre/views/screen-managers/genre_screen_manager'
 require_relative '../../modules/item/views/screen-managers/book_screen_manager'
 require_relative '../../modules/item/views/screen-managers/game_screen_manager'
+require_relative '../../modules/item/views/screen-managers/music_album_screen_manager'
 
 class MainScreen
   def initialize(handlers)
@@ -28,10 +29,16 @@ class MainScreen
       authors_screen_manager: author_screen_manager,
       labels_screen_manager: label_screen_manager
     )
-
     book_screen_manager = BookScreenManager.new(
       create_book: handlers[:book][:create],
       list_books: handlers[:book][:list],
+      genres_screen_manager: genre_screen_manager,
+      authors_screen_manager: author_screen_manager,
+      labels_screen_manager: label_screen_manager
+    )
+    music_album_screen_manager = MusicAlbumScreenManager.new(
+      create_music_album: handlers[:music_album][:create],
+      list_music_albums: handlers[:music_album][:list],
       genres_screen_manager: genre_screen_manager,
       authors_screen_manager: author_screen_manager,
       labels_screen_manager: label_screen_manager
@@ -44,7 +51,7 @@ class MainScreen
       },
       {
         title: 'List all music albums.',
-        handler: -> { puts 'Option selected' }
+        handler: -> { music_album_screen_manager.handle_list_music_albums }
       },
       {
         title: 'List all games.',
@@ -68,7 +75,7 @@ class MainScreen
       },
       {
         title: 'Add a music album.',
-        handler: -> { puts 'Option selected' }
+        handler: -> { music_album_screen_manager.handle_create_music_album }
       },
       {
         title: 'Add a game.',
