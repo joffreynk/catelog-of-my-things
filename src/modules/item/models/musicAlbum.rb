@@ -20,6 +20,7 @@ super(
   publish_date: publish_date
 
 )
+@on_spotify=
 end
 
 def can_be_archived?
